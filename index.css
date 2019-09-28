@@ -1,0 +1,86 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  height: 3000px;
+  margin-top: 175px;
+}
+
+nav {
+  top: 100vh;
+  background-image: url("http://www.sora-evo-fc.com/wp_fcevo/wp-content/themes/soraevo_fc/img/bg-sky.jpg");
+  background-position: center;
+}
+
+nav .logo {
+  width: 308px;
+  height: 145px;
+  background: url("http://www.sora-evo-fc.com/wp_fcevo/wp-content/themes/soraevo_fc/img/parts.png");
+  background-position-x: -751px;
+  background-position-y: -491px;
+  background-repeat: no-repeat;
+}
+
+nav .navbar-toggler .navbar-toggler-icon {
+  width: 308px;
+  height: 145px;
+  background: url("http://www.sora-evo-fc.com/wp_fcevo/wp-content/themes/soraevo_fc/img/parts.png");
+  background-position-x: -751px;
+  background-position-y: -491px;
+  background-repeat: no-repeat;
+}
+
+nav #navbarSupportedContent .nav-item {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+nav #navbarSupportedContent .nav-item a {
+  border-radius: 15px;
+  padding: 20px 30px;
+  color: black;
+  display: inline;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+nav #navbarSupportedContent .nav-item a:hover {
+  -webkit-transition: 1s;
+  transition: 1s;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+#banner .embed-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+#banner .embed-container iframe, #banner .embed-container object, #banner .embed-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 993px) {
+  body {
+    margin-top: 155px;
+  }
+  nav .logo {
+    width: 0;
+    height: 0;
+  }
+  nav .nav-item {
+    margin: 10px auto;
+  }
+  nav .nav-item a:hover {
+    -webkit-transition: 0;
+    transition: 0;
+    background-color: unset;
+  }
+}
+/*# sourceMappingURL=index.css.map */
