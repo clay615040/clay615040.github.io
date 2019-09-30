@@ -1,11 +1,7 @@
 body{
     padding: 0px;
     margin: 0px;
-}
-#about:before, #system:before, #character:before, #organization:before {
-    height: 175px;
-    content: "";
-    display:block;
+    margin-top: 177px;
 }
 
 nav{
@@ -50,17 +46,21 @@ nav{
 }
 
 #about{
-    background-color: rgba(0, 132, 255, 0.158);   
-        .text{
-            letter-spacing: 6px; 
-            padding: 40px 45px;
-            text-align: justify;
-            font-size: 20px;              
-            h1{
-                margin-bottom: 35px;
-                font-weight: bolder;
-            }
+    background-color: rgba(0, 132, 255, 0.158); 
+    #link_about{
+        top:-177px;
+        transform: translateY(-177px);
+    } 
+    .text{
+        letter-spacing: 6px; 
+        padding: 40px 45px;
+        text-align: justify;
+        font-size: 20px;              
+        h1{
+            margin-bottom: 35px;
+            font-weight: bolder;
         }
+    }
 }
 
 #story{
@@ -93,7 +93,10 @@ nav{
     opacity: 0.8;
 }
 
-#system{
+#system{ 
+    #link_system{
+        transform: translateY(-177px);
+    } 
     .swiper-container {
         width: 100%;
         height: 100%;
@@ -117,7 +120,11 @@ nav{
     opacity: 0.8;
 }
 
-#character{
+#character{ 
+    #link_character{
+        transform: translateY(-177px);
+        top:-177px;
+    } 
     .container{
         position: relative;
         margin-bottom: 230px;
@@ -192,7 +199,12 @@ nav{
     opacity: 0.8;
 }
 
-#organization{
+#organization{ 
+    #link_organization{
+        transform: translateY(-177px);
+        top:-177px;
+
+    } 
     .container{
         position: relative;
         .card{
