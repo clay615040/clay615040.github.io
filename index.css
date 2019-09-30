@@ -3,7 +3,7 @@ body {
   margin: 0px;
 }
 
-section:before {
+#about:before, #system:before, #character:before, #organization:before {
   height: 175px;
   content: "";
   display: block;
