@@ -1,3 +1,5 @@
+AOS.init();
+
 var swiper = new Swiper('.story', {
     scrollbar: {
         loop: true,

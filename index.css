@@ -144,12 +144,13 @@ nav #navbarSupportedContent .nav-item a:hover {
 
 #character .container {
   position: relative;
-  margin-bottom: 230px;
 }
 
 #character .container .text {
   width: 40%;
   padding: 20px;
+  height: calc(100vh - 177px);
+  letter-spacing: 4px;
 }
 
 #character .container .text h1 {
@@ -253,7 +254,7 @@ nav #navbarSupportedContent .nav-item a:hover {
 }
 
 #organization .container .card .face1 .content {
-  opacity: 0;
+  opacity: 0.1;
   -webkit-transition: 1s;
   transition: 1s;
 }
@@ -276,6 +277,12 @@ nav #navbarSupportedContent .nav-item a:hover {
 #organization .container .card:hover .face2 {
   -webkit-transform: translateY(0);
           transform: translateY(0);
+}
+
+#test .box1 {
+  width: 100px;
+  height: 100px;
+  background-color: black;
 }
 
 footer {
