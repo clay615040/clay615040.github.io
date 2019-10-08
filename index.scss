@@ -48,7 +48,6 @@ nav{
 #about{
     background-color: rgba(0, 132, 255, 0.158); 
     #link_about{
-        top:-177px;
         transform: translateY(-177px);
     } 
     .text{
@@ -123,7 +122,6 @@ nav{
 #character{ 
     #link_character{
         transform: translateY(-177px);
-        top:-177px;
     } 
     .container{
         position: relative;
@@ -207,16 +205,13 @@ nav{
 
     } 
     .container{
-        position: relative;
         .card{
-            position: relative;
-            cursor: pointer;
+            border: unset;
             .face{
                 transition: 1s;
             }
             .face1{
-                position: relative;
-                background: #333;
+                background: #111;
                 z-index: 1;
                 transform: translateY(80px);
                 .content{
@@ -240,14 +235,6 @@ nav{
                 transform: translateY(0);
             }
         }
-    }
-}
-
-#test{
-    .box1{
-        width: 100px;
-        height: 100px;
-        background-color: black;
     }
 }
 

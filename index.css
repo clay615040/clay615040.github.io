@@ -54,7 +54,6 @@ nav #navbarSupportedContent .nav-item a:hover {
 }
 
 #about #link_about {
-  top: -177px;
   -webkit-transform: translateY(-177px);
           transform: translateY(-177px);
 }
@@ -139,7 +138,6 @@ nav #navbarSupportedContent .nav-item a:hover {
 #character #link_character {
   -webkit-transform: translateY(-177px);
           transform: translateY(-177px);
-  top: -177px;
 }
 
 #character .container {
@@ -231,13 +229,8 @@ nav #navbarSupportedContent .nav-item a:hover {
   top: -177px;
 }
 
-#organization .container {
-  position: relative;
-}
-
 #organization .container .card {
-  position: relative;
-  cursor: pointer;
+  border: unset;
 }
 
 #organization .container .card .face {
@@ -246,8 +239,7 @@ nav #navbarSupportedContent .nav-item a:hover {
 }
 
 #organization .container .card .face1 {
-  position: relative;
-  background: #333;
+  background: #111;
   z-index: 1;
   -webkit-transform: translateY(80px);
           transform: translateY(80px);
@@ -277,12 +269,6 @@ nav #navbarSupportedContent .nav-item a:hover {
 #organization .container .card:hover .face2 {
   -webkit-transform: translateY(0);
           transform: translateY(0);
-}
-
-#test .box1 {
-  width: 100px;
-  height: 100px;
-  background-color: black;
 }
 
 footer {

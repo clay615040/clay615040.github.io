@@ -71,3 +71,12 @@ var swiper = new Swiper('.character2', {
         delay: 3000,
     },
 });
+
+
+name();
+function name() {
+    var num = 3;
+}
+
+console.log(num);
+
