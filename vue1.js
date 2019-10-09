@@ -7,6 +7,7 @@ var app = new Vue({
     methods: {
         addTodo: function (todo) {
             this.todos.push({content:todo , completed:false});
+            this.newTodo = "";
             
         },
         
