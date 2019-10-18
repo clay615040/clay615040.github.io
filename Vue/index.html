@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div id="app">
+        <section>
+            <div class="container">
+                <div class="title">
+                    <div class="input" style="font-size: 0px;">
+                        <select v-model="input.type">
+                            <option>Alex教學</option>
+                            <option>六角學院</option>
+                        </select>
+                        <input type="text" v-model.trim="input.title" @keyup.enter="inputHandler">
+                    </div>
+                    <div class="menu">
+                        <div class="menuItem" v-for="(item,index) in menu">
+                            <span class="number">{{ index+1 }}</span>
+                            <span class="type">{{ item.type }}</span>
+                            <a :href="item.link" target="vue-iron" class="title">
+                                {{ item.title }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./index.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./vue1.css">
+</head>
+
+<body>
+    <div id="app">
+        <section>
+            <div class="container">
+                <div class="title">
+                    <div class="input">
+                        {{ name }},
+                        {{sex}}性,
+                        {{age}},<br> 
+                        {{favor.length ? '喜歡' : ''}}{{favor.join('、')}}{{favor.length ? '、' : ''}}
+                        {{ meat ?   '喜歡' :'不喜歡' }}吃肉。</div>
+                    <div class="menu">
+                        <table>
+                            <tr>
+                                <td class="title">
+                                    姓名:
+                                </td>
+                                <td>
+                                    <input value="Jeffery" v-model=name>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="title">
+                                    性別:
+                                </td>
+                                <td>
+                                    <input type="radio" value="男" v-model=sex checked>男
+                                    <input type="radio" value="女" v-model=sex>女
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="title">
+                                    年齡:
+                                </td>
+                                <td>
+                                    <select v-model=age>
+                                        <option >20歲以下</option>
+                                        <option >21~30歲</option>
+                                        <option >31~40歲</option>
+                                        <option >41歲以上</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="title">
+                                    興趣:
+                                </td>
+                                <td>
+                                    <input type="checkbox" value="打扣" v-model=favor>打扣
+                                    <input type="checkbox" value="打電玩" v-model=favor>打電玩
+                                    <input type="checkbox" value="打東東" v-model=favor>打東東
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="title">
+                                    吃肉:
+                                </td>
+                                <td>
+                                    <input type="checkbox" v-model=meat checked>喜歡
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./vue1.js"></script>
+</body>
+
+</html>

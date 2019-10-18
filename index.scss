@@ -1,35 +1,35 @@
-body{
+body {
     padding: 0px;
     margin: 0px;
     margin-top: 177px;
 }
 
-nav{
+nav {
     top: 100vh;
     background-image: url("http://www.sora-evo-fc.com/wp_fcevo/wp-content/themes/soraevo_fc/img/bg-sky.jpg");
     background-position: center;
-   .logo{
+    .logo {
         width: 308px;
         height: 145px;
         background: url("http://www.sora-evo-fc.com/wp_fcevo/wp-content/themes/soraevo_fc/img/parts.png");
         background-position-x: -751px;
         background-position-y: -491px;
         background-repeat: no-repeat;
-   }
-   .navbar-toggler{
-    .navbar-toggler-icon {
-        width: 308px;
-        height: 145px;
-        background: url("http://www.sora-evo-fc.com/wp_fcevo/wp-content/themes/soraevo_fc/img/parts.png");
-        background-position-x: -751px;
-        background-position-y: -491px;
-        background-repeat: no-repeat;
+    }
+    .navbar-toggler {
+        .navbar-toggler-icon {
+            width: 308px;
+            height: 145px;
+            background: url("http://www.sora-evo-fc.com/wp_fcevo/wp-content/themes/soraevo_fc/img/parts.png");
+            background-position-x: -751px;
+            background-position-y: -491px;
+            background-repeat: no-repeat;
         }
     }
-   #navbarSupportedContent{
-        .nav-item{
+    #navbarSupportedContent {
+        .nav-item {
             justify-content: space-between;
-            a{
+            a {
                 border-radius: 15px;
                 padding: 20px 30px;
                 color: black;
@@ -41,28 +41,28 @@ nav{
                 transition: 1s;
                 background-color: rgba(255, 255, 255, 0.7);
             }
-       }
-   }  
+        }
+    }
 }
 
-#about{
-    background-color: rgba(0, 132, 255, 0.158); 
-    #link_about{
+#about {
+    background-color: rgba(0, 132, 255, 0.158);
+    #link_about {
         transform: translateY(-177px);
-    } 
-    .text{
-        letter-spacing: 6px; 
+    }
+    .text {
+        letter-spacing: 6px;
         padding: 40px 45px;
         text-align: justify;
-        font-size: 20px;              
-        h1{
+        font-size: 20px;
+        h1 {
             margin-bottom: 35px;
             font-weight: bolder;
         }
     }
 }
 
-#story{
+#story {
     background-color: rgba(0, 132, 255, 0.158);
     .swiper-container {
         width: 100%;
@@ -71,19 +71,19 @@ nav{
             text-align: justify;
             display: flex;
             font-size: 20px;
-            .text{
-                letter-spacing: 6px;               
-                h1{
+            .text {
+                letter-spacing: 6px;
+                h1 {
                     margin-top: 10px;
                     margin-bottom: 35px;
                     font-weight: bolder;
                 }
             }
-          }
+        }
     }
 }
 
-#fc_img{
+#fc_img {
     height: 100vh;
     width: 100%;
     background-image: url("./img/FC.jpg");
@@ -92,24 +92,24 @@ nav{
     opacity: 0.8;
 }
 
-#system{ 
-    #link_system{
+#system {
+    #link_system {
         transform: translateY(-177px);
-    } 
+    }
     .swiper-container {
         width: 100%;
         height: 100%;
-      }
-    .container{
+    }
+    .container {
         padding: 20px;
-        .text_at{
+        .text_at {
             text-align: justify;
             font-size: 20px;
         }
     }
 }
 
-#sc_img{
+#sc_img {
     height: 100vh;
     width: 100%;
     background-image: url("./img/SC.jpg");
@@ -119,19 +119,19 @@ nav{
     opacity: 0.8;
 }
 
-#character{ 
-    #link_character{
+#character {
+    #link_character {
         transform: translateY(-177px);
-    } 
-    .container{
+    }
+    .container {
         position: relative;
-        .text{
+        .text {
             width: 40%;
             padding: 20px;
             height: calc(100vh - 177px);
             letter-spacing: 4px;
-            h1{
-            margin-bottom: 20px;
+            h1 {
+                margin-bottom: 20px;
             }
         }
         .swiper-container {
@@ -146,49 +146,48 @@ nav{
             height: 87px;
             opacity: 1;
             font-size: 0;
-        }   
+        }
         .swiper-pagination-bullet-active {
-            color:#fff;
+            color: #fff;
             background: #007aff;
         }
-        .swiper-pagination-bullets{
+        .swiper-pagination-bullets {
             width: unset;
             left: 20px;
             bottom: 50px;
         }
     }
-    .character1{
-        .swiper-pagination-bullet:nth-child(1){
+    .character1 {
+        .swiper-pagination-bullet:nth-child(1) {
             background-image: url("http://www.sora-evo-fc.com/wp_fcevo/wp-content/uploads/2015/03/thm_ester_03.png");
         }
-            .swiper-pagination-bullet:nth-child(2){
+        .swiper-pagination-bullet:nth-child(2) {
             background-image: url("http://www.sora-evo-fc.com/wp_fcevo/wp-content/uploads/2015/03/thm_ester_02.png");
         }
-            .swiper-pagination-bullet:nth-child(3){
+        .swiper-pagination-bullet:nth-child(3) {
             background-image: url("http://www.sora-evo-fc.com/wp_fcevo/wp-content/uploads/2015/03/thm_ester_01.png");
         }
-            .swiper-pagination-bullet:nth-child(4){
+        .swiper-pagination-bullet:nth-child(4) {
             background-image: url("http://www.sora-evo-fc.com/wp_fcevo/wp-content/uploads/2015/03/thm_ester_04.png");
         }
-        
     }
-    .character2{
-        .swiper-pagination-bullet:nth-child(1){
+    .character2 {
+        .swiper-pagination-bullet:nth-child(1) {
             background-image: url("http://www.sora-evo-fc.com/wp_fcevo/wp-content/uploads/2015/03/thm_joshua_03.png");
         }
-        .swiper-pagination-bullet:nth-child(2){
+        .swiper-pagination-bullet:nth-child(2) {
             background-image: url("http://www.sora-evo-fc.com/wp_fcevo/wp-content/uploads/2015/03/thm_joshua_02.png");
         }
-            .swiper-pagination-bullet:nth-child(3){
+        .swiper-pagination-bullet:nth-child(3) {
             background-image: url("http://www.sora-evo-fc.com/wp_fcevo/wp-content/uploads/2015/03/thm_joshua_01.png");
         }
-            .swiper-pagination-bullet:nth-child(4){
+        .swiper-pagination-bullet:nth-child(4) {
             background-image: url("http://www.sora-evo-fc.com/wp_fcevo/wp-content/uploads/2015/03/thm_joshua_04.png");
         }
     }
 }
 
-#rd_img{
+#rd_img {
     height: 100vh;
     width: 100%;
     background-image: url("./img/3RD1.jpg");
@@ -198,68 +197,67 @@ nav{
     opacity: 0.8;
 }
 
-#organization{ 
-    #link_organization{
+#organization {
+    #link_organization {
         transform: translateY(-177px);
-        top:-177px;
-
-    } 
-    .container{
-        .card{
+        top: -177px;
+    }
+    .container {
+        .card {
             border: unset;
-            .face{
+            .face {
                 transition: 1s;
             }
-            .face1{
+            .face1 {
                 background: #111;
                 z-index: 1;
                 transform: translateY(80px);
-                .content{
+                .content {
                     opacity: 0.1;
                     transition: 1s;
                 }
             }
-            .face2{
+            .face2 {
                 transform: translateY(-320px);
             }
         }
-        .card:hover{
-            .face1{
+        .card:hover {
+            .face1 {
                 background: #ccc;
                 transform: translateY(0);
-                .content{
+                .content {
                     opacity: 1;
                 }
             }
-            .face2{
+            .face2 {
                 transform: translateY(0);
             }
         }
     }
 }
 
-footer{
+footer {
     margin-top: 100px;
     padding: 15px 0;
     background-color: #333;
     color: white;
 }
 
-@media (max-width: 993px){
-    body{
+@media (max-width: 993px) {
+    body {
         margin-top: 155px;
     }
-    nav{
-        .logo{
+    nav {
+        .logo {
             width: 0;
             height: 0;
         }
-        .nav-item{
+        .nav-item {
             margin: 10px auto;
             a:hover {
                 transition: 0;
-                background-color:unset;
+                background-color: unset;
             }
         }
-    } 
+    }
 }
