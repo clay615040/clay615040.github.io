@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./vue2.css">
+</head>
+
+<body>
+    <div id="app">
+        <section>
+            <div class="container">
+                <div class="title">
+                    <div class="input" style="font-size: 0px;">
+                        <select v-model="input.type">
+                            <option :value="null">請選擇</option>
+                            <option v-for="item in typeList.sort">{{ item }}</option>
+                        </select>
+                        <select v-model="input.title" style="width: 720px;">
+                            <option :value="null">請選擇</option>
+                            <option v-for="item in titleList.sort">{{ item }}</option>
+                        </select>
+                    </div>
+                    <div class="menu">
+                        <div class="menuItem" v-if="content">
+                            <span class="number">{{ content.index + 1 }}</span>
+                            <span class="type">{{ content.type }}</span>
+                            <a :href="content.link" target="vue-iron" class="title">
+                                {{ content.link }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./vue2.js"></script>
+
+</body>
+
+</html>
