@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="weather_card.css">
+    
+</head>
+
+<body>
+    <div class="cards">
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script>
+        var cards = document.querySelector(".cards");
+
+        fetch('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-B5282D9D-8FDD-40E9-AD48-B1DF3270465D&format=JSON')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                //wx 天氣現象
+                //MaxT 最高溫度
+                //MinT 最低溫度
+                //CI 舒適度
+                //PoP 降雨機率
+                var i = 0;
+                console.log(typeof i);
+
+                function change_city() {
+                    var i_lenght = (myJson.records.location.length);
+
+                    {
+                        cards.innerHTML =
+                        `<div class="card">
+            <div class="card_top fontsize18 margin_btm15 animated fadeOut slow delay-3s infinite">
+                <div class="card_top_left width33 text_center ">${myJson.records.location[i].locationName}</div>
+                <div class="card_top_mid width33 text_center margin_auto">
+                    <div class="maxT">最高溫度:${myJson.records.location[i].weatherElement[4].time[0].parameter.parameterName}℃</div>
+                    <div class="minT">最低溫度:${myJson.records.location[i].weatherElement[2].time[0].parameter.parameterName}℃</div>
+                </div>
+                <div class="card_top_right width33 text_center margin_auto">
+                        <div class="ci">${myJson.records.location[i].weatherElement[3].time[0].parameter.parameterName}</div>
+                    <div class="pop">降雨機率:${myJson.records.location[i].weatherElement[1].time[0].parameter.parameterName}%</div> 
+                </div>
+            </div>
+            <div class="card_btm animated infinite fadeOut slow delay-3s">
+                <div class="card_btm_up fontsize18 dis_flex">
+                    <div class="btm_up_left">
+                            ${myJson.records.location[i].weatherElement[1].time[0].startTime}   
+                    </div>
+                    <div class="btm_up_mid">
+                            ${myJson.records.location[i].weatherElement[1].time[1].startTime}
+                    </div>
+                    <div class="btm_up_right">
+                            ${myJson.records.location[i].weatherElement[1].time[2].startTime}
+                    </div>
+                </div>
+                <div class="card_btm_mid fontsize18 dis_flex margin_btm10">
+                    <div class="btm_mid_left">
+                            ${myJson.records.location[i].weatherElement[1].time[0].endTime}
+                    </div>
+                    <div class="btm_mid_mid">
+                            ${myJson.records.location[i].weatherElement[1].time[1].endTime}
+                    </div>
+                    <div class="btm_mid_right">
+                            ${myJson.records.location[i].weatherElement[1].time[2].endTime}
+                    </div>
+                </div>
+                <div class="card_btm_btm">
+                    <div class="btm_btm_left">
+                        <i class="${weather_img(myJson.records.location[i].weatherElement[1].time[0].parameter.parameterName)}"></i>
+                    </div>
+                    <div class="btm_btm_mid">
+                        <i class="${weather_img(myJson.records.location[i].weatherElement[1].time[0].parameter.parameterName)}"></i>
+                    </div>
+                    <div class="btm_btm_right">
+                        <i class="${weather_img(myJson.records.location[i].weatherElement[1].time[0].parameter.parameterName)}"></i>
+                    </div>
+                </div>
+            </div>
+        </div>`
+                    }
+                    i = i + 1;
+                    if (i == i_lenght) {i = 0; }
+                }
+
+                change_city();
+                setInterval(change_city, 5000);
+
+            });
+
+        function weather_img(PoP) {
+            var rain = "fas fa-umbrella";
+            var cloud = "fas fa-cloud";
+            var sun = "fas fa-sun";
+
+            if (PoP > 60) { return rain; }
+            if (PoP >= 30 && PoP <= 60) { return cloud; }
+            if (PoP < 30) { return sun; }
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
