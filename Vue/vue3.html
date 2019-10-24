@@ -50,7 +50,7 @@
         height: 100%;
     }
 
-    .img-chenter{
+    .img-chenter {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -221,18 +221,27 @@
         <section>
             <div class="container">
                 <div class="title">
-                    <div class="img-chenter">
-                        <img :src="menu[index].link" alt="海賊團圖片">
-                    </div>
+
+                    
+                        <div class="img-chenter" v-for="(item,i) in menu" v-if="i===index">
+                            <img :src="item.link" alt="海賊團圖片">
+                        </div>
+                    
+
                     <div class="menu">
                         <i class="fas fa-arrow-circle-left" @click="changeIndex(-1)" v-if="index != 0"></i>
-                        <div class="menuItem" v-if="menu">
-                            <span class="number">{{ index + 1 }}</span>
-                            <span class="type">{{ menu[index].type }}</span>
-                            <a :href="menu[index].link" target="vue-iron" class="title">
-                                {{ menu[index].title }}
-                            </a>
-                        </div>
+
+                        <transition appear @before-enter="beforeEnter" @enter="Enter" @after-enter="afterEnter"
+                        @before-leave="beforeLeave" @leave="Leave" @after-leave="afterLeave" mode="out-in" :css="false">
+                            <div class="menuItem" v-for="(item,i) in menu" v-if="index === i" :key="item.title">
+                                <span class="number">{{ i + 1 }}</span>
+                                <span class="type">{{ item.type }}</span>
+                                <a :href="item.link" target="vue-iron" class="title">
+                                    {{ item.title }}
+                                </a>
+                            </div>
+                        </transition>
+
                         <i class="fas fa-arrow-circle-right" @click="changeIndex(+1)"
                             v-if="index != menu.length - 1"></i>
                     </div>
@@ -243,7 +252,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="./vue3.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 </body>
 
 </html>

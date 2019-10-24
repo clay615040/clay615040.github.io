@@ -28,8 +28,27 @@ let vm = new Vue({
     data: data,
     methods: {
         changeIndex(change) {
-            this.index += change;
+            this.index = this.index + change
+        },
+        beforeEnter(el){
+            $(el).css({opacity: 0 })
+        },
+        Enter(el, done){
+            $(el).animate({opacity: 1 }, 500 , done)
+        },
+        afterEnter(el){
+            $(el).css({opacity: ''})
+        },
+        beforeLeave(el){
+            $(el).css({opacity: 1 })
+        },
+        Leave(el, done){
+            $(el).animate({opacity: 0 }, 500 , done)
+        },
+        afterLeave(el){
+            $(el).css({opacity: ''})
         }
+
     }
  
 })

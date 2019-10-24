@@ -9,7 +9,7 @@ let data = {
         { type: '練習', title: 'API天氣卡片', link: '/js+jq/weather_card.html' },
         { type: '練習', title: 'JQ分頁', link: '/js+jq/ulli+jq.html' },
         { type: 'Alex教學', title: '資料巢狀選單', link: './vue2.html' },
-        { type: 'Alex教學', title: '畫面綁定', link: './vue3.html' }
+        { type: 'Alex教學', title: '資料切換', link: './vue3.html' }
     ]
 }
 
