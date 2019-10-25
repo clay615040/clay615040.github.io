@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        box-sizing: border-box;
+    }
+    html,
+    body,
+    #app {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+    }
+
+    html {
+        color: #34495e;
+        background-color: #41b883;
+        font-family: '微軟正黑體';
+        overflow: hidden;
+    }
+
+    section {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .box {
+        display: flex;
+        margin: 20px;
+        font-size: 30px;
+    }
+
+    .box .text {
+        margin-right: 20px;
+    }
+    .box .number{
+        background-color: white;
+        width: 40px;
+        border-radius: 100%;
+        text-align: center;
+        margin-right: 5px;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <section>
+            <div class="box">
+                <div class="text">數字:</div>
+                <div class="number" @click="number++">{{ number }}</div>
+            </div>
+            <div class="box">
+                <div class="text">物件數字:</div>
+                <div class="number" @click="obj.num++">{{ obj.num }}</div>
+            </div>
+            <div class="box">
+                <div class="text">物件陣列:</div>
+                <div class="number" v-for="(item,i) in objList" @click="objListHandler(i)">{{ item.num }}</div>
+            </div>
+            <div class="box">
+                <div class="text">數字陣列:</div>
+                <div class="number" v-for="(item,i) in numberList" @click="numberListHandler(i)">{{ item }}</div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./Vue4.js"></script>
+</body>
+
+</html>
