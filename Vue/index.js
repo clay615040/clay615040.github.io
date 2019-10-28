@@ -11,7 +11,7 @@ let data = {
         { type: 'Alex教學', title: '資料巢狀選單', link: './vue2.html' },
         { type: 'Alex教學', title: '資料切換.動畫', link: './vue3.html' },
         { type: 'Alex教學', title: '資料觀測與設定', link: './vue4.html' },
-
+        { type: 'Alex教學', title: 'API串接通訊錄', link: './vue5.html' },
     ]
 }
 

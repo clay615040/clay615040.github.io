@@ -1,0 +1,21 @@
+{
+  "name": "clay615040.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "json": "json-server --watch db.json --port 8888"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clay615040/clay615040.github.io.git"
+  },
+  "author": "jeffery",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clay615040/clay615040.github.io/issues"
+  },
+  "homepage": "https://github.com/clay615040/clay615040.github.io#readme",
+  "dependencies": {
+    "json-server": "^0.15.1"
+  }
+}
