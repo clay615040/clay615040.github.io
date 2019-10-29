@@ -16,7 +16,7 @@
                 if (!name || !email) return
                 this.loading = true
                 if (this.editIndex === null) {
-                    axios.post('http://localhost:8888/contact', this.input)
+                    axios.post('http://localhost:80/contact', this.input)
                         .then((res) => {
                             this.contacts.push(res.data)
                             this.cancelHandler()
@@ -26,7 +26,7 @@
                         })
                 } else {
                     let id = this.contacts[this.editIndex].id
-                    axios.put('http://localhost:8888/contact/' + id, this.input)
+                    axios.put('http://localhost:80/contact/' + id, this.input)
                         .then((res) => {
                             this.contacts[this.editIndex] = res.data
                             this.cancelHandler()
@@ -51,7 +51,7 @@
                 let target = this.contacts[index]
                 if (confirm(`是否刪除 ${target.name} ?`)) {
                     this.loading = true
-                    axios.delete('http://localhost:8888/contact/' + target.id)
+                    axios.delete('http://localhost:80/contact/' + target.id)
                         .then((res) => {
                             this.contacts.splice(index, 1)
                             this.cancelHandler()
@@ -74,7 +74,7 @@
         },
         mounted() {
             this.loading = true
-            axios.get('http://localhost:8888/contact')
+            axios.get('http://localhost:80/contact')
                 .then((res) => {
                     this.contacts = res.data
                     this.loading = false

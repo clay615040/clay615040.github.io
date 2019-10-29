@@ -108,7 +108,7 @@
                         <div class="menuItem" v-for="(item,index) in contacts">
                             <span class="number">{{ item.id }}</span>
                             <span class="type">{{ item.name }}</span>
-                            <a href="'mailto:'+item.email" target="vue-iron" class="email">{{ item.email }}</a>
+                            <a :href="'mailto:'+item.email" target="vue-iron" class="email">{{ item.email }}</a>
                             <span class="edit" @click="editHandler(index)">修改</span>
                             <span class="delete" @click="deleteHandler(index)">刪除</span>
                         </div>

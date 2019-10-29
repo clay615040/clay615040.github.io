@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "json": "json-server --watch db.json --port 8888"
+    "json": "json-server --watch db.json --port 80"
   },
   "repository": {
     "type": "git",
