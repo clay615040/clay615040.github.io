@@ -12,6 +12,7 @@ let data = {
         { type: 'Alex教學', title: '資料切換.動畫', link: './vue3.html' },
         { type: 'Alex教學', title: '資料觀測與設定', link: './vue4.html' },
         { type: 'Alex教學', title: 'API串接通訊錄', link: './vue5.html' },
+        { type: '六角學院', title: '生命週期', link: './vue6.html' },
     ]
 }
 
