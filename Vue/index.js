@@ -13,6 +13,10 @@ let data = {
         { type: 'Alex教學', title: '資料觀測與設定', link: './vue4.html' },
         { type: 'Alex教學', title: 'API串接通訊錄', link: './vue5.html' },
         { type: '六角學院', title: '生命週期', link: './vue6.html' },
+        { type: '六角學院', title: '互動式行為v-on指令', link: './sixvue2.html' },
+        { type: '六角學院', title: '切換 Class', link: './sixvue3.html' },
+        { type: '六角學院', title: '表單雙向綁定', link: './sixvue4.html' },
+        { type: '六角學院', title: 'Vue元件化', link: './sixvue5.html' },
     ]
 }
 
@@ -21,24 +25,25 @@ let vm = new Vue({
     data: data,
     computed: {
         typeMenu() {
-            if (this.input.type != '全部'){
-                return this.menu.filter( item => {
+            if (this.input.type != '全部') {
+                return this.menu.filter(item => {
                     return item.type == this.input.type
-            })
-            }else{
+                })
+            } else {
                 return this.menu
-            }           
+            }
         },
-        titleMenu(){
-            if(this.input.title){
-                return this.typeMenu.filter( item => {
+        titleMenu() {
+            if (this.input.title) {
+                return this.typeMenu.filter(item => {
                     let content = item.title.toLowerCase()
                     let keyword = this.input.title.toLowerCase()
                     return content.indexOf(keyword) != -1
-                })}
-                else{
+                })
+            }
+            else {
                 return this.typeMenu
-                }
-        }    
-}
+            }
+        }
+    }
 })

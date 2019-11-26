@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+</head>
+
+<body>
+    <div class="col-md-9 post">
+        <h1 class="mt-0 text-muted">處理互動式行為 v-on 指令</h1>
+
+        <div class="alert alert-secondary">
+            <ol class="mb-0">
+                <li>使用 v-on 指令來製作互動行為</li>
+                <li>反轉字串</li>
+                <li>請將 button 改成 a 標籤，並加上 preventDefault()</li>
+                <li>使用修飾符取代</li>
+                <li>將 input 加上 Enter 事件</li>
+                <li>將範例改成使用縮寫表示</li>
+            </ol>
+        </div>
+
+        <div id="app">
+            <input type="text" class="form-control" v-model="text" @keyup.enter="reverseText">
+            <a href="#" class="btn btn-primary mt-1" @click.prevent="reverseText">反轉字串</a>
+            <div class="mt-3">
+                {{ newText }}
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                text: '',
+                newText: ''
+            },
+            methods: {
+                reverseText() {
+                    this.newText = this.text.split('').reverse().join('');
+                }
+            }
+
+        });
+    </script>
+</body>
+
+</html>

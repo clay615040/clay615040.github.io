@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+</head>
+
+<body>
+    <div class="col-md-9 post">
+        <!-- 練習開始 -->
+        <h1 class="mt-0 text-muted">表單雙向綁定</h1>
+
+        <div class="alert alert-secondary">
+            <ol class="mb-0">
+                <li>請跟隨課程完成此章節。</li>
+            </ol>
+        </div>
+
+        <div id="app">
+            <h4>字串</h4>
+            <input type="text" class="form-control" v-model="text">
+            {{text}}
+            <hr>
+            <textarea cols="30" rows="3" class="form-control" v-model="textarea"></textarea>
+            {{textarea}}
+            <hr>
+
+            <h4>Checkbox 與 Radio</h4>
+            <div class="form-check"><input type="checkbox" id="check1" class="form-check-input" v-model="checkbox1">
+                <label for="check1" class="form-check-label"> 妳要不要吃火鍋? </label></div>
+                <span v-if="checkbox1">好啊</span>
+            <hr>
+
+            <div class="form-check"><input type="checkbox" id="check2" value="雞" class="form-check-input" v-model="checkboxArray">
+                <label for="check2" class="form-check-label">雞</label></div>
+            <div class="form-check"><input type="checkbox" id="check3" value="豬" class="form-check-input" v-model="checkboxArray">
+                <label for="check3" class="form-check-label">豬</label></div>
+            <div class="form-check"><input type="checkbox" id="check4" value="牛" class="form-check-input" v-model="checkboxArray">
+                <label for="check4" class="form-check-label">牛</label></div>
+            <p>晚餐火鍋裡有 {{ checkboxArray.join('、') }}。</p>
+
+            <hr>
+            <div class="form-check"><input type="radio" id="radio2" value="雞" class="form-check-input" v-model="singleRadio">
+                <label for="radio2" class="form-check-label">雞</label></div>
+            <div class="form-check"><input type="radio" id="radio3" value="豬" class="form-check-input" v-model="singleRadio">
+                <label for="radio3" class="form-check-label">豬</label></div>
+            <div class="form-check"><input type="radio" id="radio4" value="牛" class="form-check-input" v-model="singleRadio">
+                <label for="radio4" class="form-check-label">牛</label></div>
+            <p>晚餐火鍋裡只有 {{ singleRadio }}。</p>
+            <hr>
+            <h4>Select</h4> 
+            <select name="" id="" class="form-control">
+                <option value="">---請選擇---</option>
+                <option value="三上">三上</option>
+                <option value="石原">石原</option>
+                <option value="希崎">希崎</option>
+                <option value="麻倉">麻倉</option>
+                <option value="辰巳">辰巳</option>
+            </select>
+        </div>
+    </div>
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                text: '',
+                textarea: '',
+                checkbox1: false,
+                checkboxArray: [],
+                singleRadio: '',
+                selected: '',
+            },
+        });
+    </script>
+
+</body>
+
+</html>

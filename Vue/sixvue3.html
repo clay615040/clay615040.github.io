@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+</head>
+
+<style>
+    .box {
+        transition: transform .5s;
+        display: inline-block;
+        width: 5rem;
+        height: 5rem;
+        margin: .25rem;
+        background-color: #f5f5f5;
+        border: 1px solid;
+    }
+
+    .box.rotate {
+        transform: rotate(45deg)
+    }
+</style>
+
+<body>
+    <div class="col-md-9 post">
+        <h1 class="mt-0 text-muted">切換 Class</h1>
+
+        <div class="alert alert-secondary">
+            <ol class="mb-0">
+                <li>為 .box 動態加上 className "rotate"</li>
+            </ol>
+        </div>
+
+        <div id="app">
+            <div class="box" :class="{ 'rotate' : isTransform }"></div>
+            <hr>
+            <button class="btn btn-outline-primary" @click="isTransform = !isTransform">選轉物件</button>
+        </div>
+    </div>
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                isTransform: false
+            },
+        });
+    </script>
+
+</body>
+
+</html>

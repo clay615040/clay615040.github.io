@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+</head>
+
+<body>
+    <div class="col-md-9 post">
+        <!-- 練習開始 -->
+        <h1 class="mt-0 text-muted">元件化</h1>
+
+        <div class="alert alert-secondary">
+            <ol class="mb-0">
+                <li>將以下元素轉為元件</li>
+            </ol>
+        </div>
+
+        <div id="app">
+            <div>
+                你已經點擊 <button class="btn btn-outline-secondary btn-sm" @click="counter += 1">{{ counter }}</button> 下。
+                你已經點擊 <button class="btn btn-outline-secondary btn-sm" @click="counter += 1">{{ counter }}</button> 下。
+            </div>
+            <counter-component></counter-component>
+            <counter-component></counter-component>
+            <counter-component></counter-component>
+            <counter-component></counter-component>
+        </div>
+    </div>
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+
+        Vue.component('counter-component', {
+            data: function () {
+                return {
+                    counter: 0
+                }
+            },
+            template: `
+          <div>
+          你已經點擊
+          <button class="btn btn-outline-secondary btn-sm" @click="counter += 1">{{ counter }}</button>
+          </div>
+        `
+        });
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                counter: 0
+            },
+        });
+    </script>
+
+</body>
+
+</html>
