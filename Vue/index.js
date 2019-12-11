@@ -18,6 +18,8 @@ let data = {
         { type: '六角學院', title: '表單雙向綁定', link: './sixvue4.html' },
         { type: '六角學院', title: 'Vue元件化', link: './sixvue5.html' },
         { type: '六角學院', title: 'To-Do List', link: './sixvue6.html' },
+        { type: '六角學院', title: '基礎模板語法', link: './sixvue7.html' },
+        { type: '六角學院', title: '切換樣式', link: './sixvue8.html' },
     ]
 }
 
