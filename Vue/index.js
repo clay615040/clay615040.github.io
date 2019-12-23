@@ -21,6 +21,7 @@ let data = {
         { type: '六角學院', title: '基礎模板語法', link: './sixvue7.html' },
         { type: '六角學院', title: '切換樣式', link: './sixvue8.html' },
         { type: '六角學院', title: 'v-for 迴圈', link: './sixvue9.html' },
+        { type: '六角學院', title: 'v-if 模板判斷', link: './sixvue10.html' },
     ]
 }
 

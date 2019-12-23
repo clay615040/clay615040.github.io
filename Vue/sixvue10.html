@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+</head>
+
+<body>
+    <div class="col-md-9 post">
+        <h1 class="mt-0 text-muted">v-if 模板判斷</h1>
+
+        <div id="app">
+            <h4>v-if, v-else</h4>
+            <p>使用 v-if, v-else 切換物件呈現</p>
+            <div class="alert alert-success" v-if="isSuccess">成功!</div>
+            <div class="alert alert-danger" v-if="!isSuccess">失敗!</div>
+            <div class="form-check">
+                <input type="checkbox" id="isSuccess" class="form-check-input" v-model="isSuccess">
+                <label for="isSuccess" class="form-check-label">啟用元素狀態</label>
+            </div>
+            <h4>template 標籤</h4>
+            <p>使用 template 切換多數 DOM 呈現</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>編號</th>
+                        <th>姓名</th>
+                    </tr>
+                </thead>
+                <template v-if="showTemplate">
+                    <tr>
+                        <td>1</td>
+                        <td>安妮</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>小明</td>
+                    </tr>
+                </template>
+            </table>
+            <div class="form-check">
+                <input type="checkbox" id="showTemplate" class="form-check-input" v-model="showTemplate">
+                <label for="showTemplate" class="form-check-label">啟用元素狀態</label>
+            </div>
+            <hr>
+            <h4>v-else-if</h4>
+            <p>使用 v-else-if 做出分頁頁籤</p>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="#" class="nav-link" :class="{'active': link=='a'}" @click.prevent="link = 'a'">標題一</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" :class="{'active': link=='b'}" @click.prevent="link = 'b'">標題二</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" :class="{'active': link=='c'}" @click.prevent="link = 'c'">標題三</a>
+                </li>
+            </ul>
+            <div class="content">
+                <div v-if="link == 'a'">Ａ</div>
+                <div v-else-if="link == 'b'">Ｂ</div>
+                <div v-else-if="link == 'c'">Ｃ</div>
+            </div>
+            <hr>
+            <h4>KEY</h4>
+            <p>講師說明 Vue 切換狀態可能遇到的問題</p>
+
+            <template v-if="loginType == 'username'">
+                <label>Username</label>
+                <input placeholder="Enter your username" class="form-control" :key="1">
+            </template>
+            <template v-else>
+                <label>email</label>
+                <input placeholder="Enter your email address" class="form-control" :key="2">
+            </template>
+            <button class="btn btn-outline-primary mt-3" @click="toggleLoginType">切換狀態</button>
+            <hr>
+            <h4>v-if 與 v-show</h4>
+            <p>講師說明 v-if 與 v-show 的差異</p>
+            <div class="alert alert-success" v-show="isSuccess2">成功!</div>
+            <div class="alert alert-danger" v-show="!isSuccess2">失敗!</div>
+            <div class="form-check">
+                <input type="checkbox" id="isSuccess2" class="form-check-input" v-model="isSuccess2">
+                <label for="isSuccess2" class="form-check-label">啟用元素狀態</label>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                isSuccess: true,
+                isSuccess2: true,
+                showTemplate: true,
+
+                link: 'a',
+
+                loginType: 'username'
+            },
+            methods: {
+                toggleLoginType: function () {
+                    return this.loginType = this.loginType === 'username' ? 'email' : 'username'
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
