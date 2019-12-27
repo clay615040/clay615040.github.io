@@ -10106,7 +10106,8 @@
             <h4>Watch</h4>
             <p>使用 trigger 來觸發旋轉 box、並在三秒後改變回來</p>
             <div class="box" :class="{'rotate' : trigger}"></div>
-            <hr> <button class="btn btn-outline-primary" @click="trigger = true">Counter</button>
+            <hr> 
+            <button class="btn btn-outline-primary" @click="trigger = true" >Counter</button>
         </div>
     </div>
 
@@ -10167,9 +10168,10 @@
             watch: {
                 trigger: function(){
                     var vm = this;
+                    console.log('123');
                     setTimeout(() => {
                         vm.trigger = false;
-                    }, 3000);
+                    }, 3000);                                 
                 }
             },
             mounted: function () {
@@ -10177,55 +10179,6 @@
             }
         });
     </script>
-
-    <!-- // methods: {
-    //   openTrigger: function() {
-    //     var vm = this;
-    //     vm.trigger = true
-    //   },
-    //   closeTrigger: function() {
-    //     var vm = this;
-    //     setTimeout(function() { 
-    //       vm.trigger = false
-    //     }, 3000);
-    //   }
-    // },
-    // watch: {
-    //   trigger: function() {
-    //     this.closeTrigger();
-    //   }
-    // },
-    // computed: {
-    //   filterArray: function () {
-    //     var vm = this;
-    //     return vm.arrayData.filter(function(item) {
-    //       return item.name.match(vm.filterText);
-    //     });
-    //   },
-    //  
-    // },
-      
-
-
-    解答：
-<h4>Computed</h4>
-<input type="text" class="form-control" v-model="filterText">
-<ul>
-<li v-for="(item, key) in filterArray" :key="item.age">
-  {{ key }} - {{ item.name }} {{ item.age }} 歲 <input type="text">
-</li>
-</ul>
-<p>使用 Computed 來呈現時間格式。</p>
-<p>{{ formatTime }}</p>
-<h4>Watch</h4>
-<p>使用 trigger 來觸發三秒後旋轉 box、並在三秒後改變回來</p>
-<div class="box" :class="{'rotate': trigger }"></div>
-<hr>
-<button class="btn btn-outline-primary" @click="openTrigger">Counter</button>
-
-
-
-
 </body>
 
 </html>
