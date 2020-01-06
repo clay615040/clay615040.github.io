@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+</head>
+
+<style>
+    .table th.click {
+        cursor: pointer;
+    }
+
+    .table th.click {
+        cursor: pointer;
+    }
+
+    .icon {
+        display: inline-block;
+    }
+
+    .icon.inverse {
+        transform: rotate(180deg)
+    }
+
+</style>
+
+<body>
+    <div class="col-md-9 post">
+        <h1 class="mt-0 text-muted">作業練習：表格排序</h1>
+
+        <h3>模板練習作業：透過點擊 th 方式，反轉表格的排序</h3>
+        <p>僅需要排序價格、到期日。</p>
+        
+        <div id="app">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>品名</th>
+                        <th class="click" @click="changePrice">價格
+                            <span :class="{'inverse' : isInverse, 'icon' : isPriceicon, 'd-none' : !isPriceicon }" id="priceIcon">
+                                <i class="fas fa-angle-up text-success"></i>
+                            </span>
+                        </th>
+                        <th class="click" @click="changeDay">到期日
+                            <span :class="{'inverse' : isInverse, 'icon' : isDayicon, 'd-none' : !isDayicon }" id="dayIcon">
+                                <i class="fas fa-angle-up text-success"></i>
+                            </span>
+                        </th>
+                    </tr>
+                    <tr v-for="item in data">
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.price }}</td>
+                        <td>{{ item.expiryDate }}</td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                isInverse: false,
+                isPriceicon: false,
+                isDayicon: false,
+                data: [
+                    {
+                        name: '升龍餃子',
+                        price: 60,
+                        expiryDate: 3
+                    },
+                    {
+                        name: '鲶魚麵',
+                        price: 50,
+                        expiryDate: 2
+                    },
+                    {
+                        name: '銀河麵',
+                        price: 1314,
+                        expiryDate: 9999
+                    },
+                    {
+                        name: '黃金開口笑',
+                        price: 30,
+                        expiryDate: 10
+                    },
+                    {
+                        name: '鳳凰水晶',
+                        price: 9999,
+                        expiryDate: 99
+                    },
+                ],
+            },
+            methods: {
+                changePrice: function () {
+                    this.isInverse = !this.isInverse;
+                    this.isPriceicon = true;
+                    this.isDayicon = false;
+                    if (document.querySelector("#priceIcon").classList.contains("inverse")) {
+                        newArray = this.data.sort(function (a, b) {
+                            return a.price - b.price;
+                        })
+                    } else {
+                        newArray = this.data.sort(function (a, b) {
+                            return b.price - a.price;
+                        })
+                    }
+                },
+                changeDay: function () {
+                    this.isInverse = !this.isInverse;
+                    this.isPriceicon = false;
+                    this.isDayicon = true;
+                    if (document.querySelector("#dayIcon").classList.contains("inverse")) {
+                        newArray = this.data.sort(function (a, b) {
+                            return a.expiryDate - b.expiryDate;
+                        })
+                    } else {
+                        newArray = this.data.sort(function (a, b) {
+                            return b.expiryDate - a.expiryDate;
+                        })
+                    }
+                }
+            }
+        });
+    </script>
+
+
+
+
+
+</body>
+
+</html>
