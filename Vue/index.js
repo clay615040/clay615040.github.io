@@ -26,6 +26,7 @@ let data = {
         { type: '六角學院', title: '表單補充', link: './sixvue12.html' },
         { type: '六角學院', title: 'v-on 事件綁定', link: './sixvue13.html' },
         { type: '六角學院', title: '表格排序', link: './sixvue14.html' },
+        { type: '六角學院', title: '基礎元件練習', link: './sixvue15.html' },
     ]
 }
 
