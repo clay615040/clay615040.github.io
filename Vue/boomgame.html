@@ -89,13 +89,11 @@
 
     <div id="app">
         <div class="game" :class="{'d-none' : boom}">
-            <div class="time" v-if="10 > ((showTime - (showTime % 60)) / 60 ) && showTime % 60 >= 10 && power "
-                @click.once="countDown()">
+            <div class="time" v-if="10 > ((showTime - (showTime % 60)) / 60 ) && showTime % 60 >= 10 && power ">
                 0{{ (showTime - (showTime % 60)) / 60 }}:{{ showTime % 60 }}</div>
-            <div class="time" v-if="((showTime - (showTime % 60)) / 60 ) > 10 && showTime % 60 >= 10 && power"
-                @click.once="countDown()">
+            <div class="time" v-if="((showTime - (showTime % 60)) / 60 ) > 10 && showTime % 60 >= 10 && power">
                 {{ (showTime - (showTime % 60)) / 60 }}:{{ showTime % 60 }}</div>
-            <div class="time" v-if="10 > showTime % 60 && power" @click.once="countDown()">
+            <div class="time" v-if="10 > showTime % 60 && power">
                 0{{ (showTime - (showTime % 60)) / 60 }}:0{{ showTime % 60 }}</div>
             <img src="../img/bomb-game-02.png" alt="">
 
@@ -166,12 +164,11 @@
                     }
                 },
                 examination(key) {
-                    if (this.answer[0] == key) {
+                    if (this.answer[0] == key && this.power) {
                         this.answer[0] = this.answer[1];
                         this.remaining--
-                    } else {
+                    } else if(this.answer[0] != key && this.power){
                         this.boom = true
-
                     }
                 }
             },
