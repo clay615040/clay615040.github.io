@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <title>bomb</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: "Noto Sans TC", sans-serif;
+        }
+
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden;
+            background-color: #200B0B;
+            scroll-behavior: smooth;
+        }
+
+        p {
+            padding: 0;
+            margin: 0;
+        }
+
+        .gameName {
+            font-size: 10.73px;
+            margin: 0;
+        }
+
+        .ham {
+            display: none;
+        }
+
+        .bombgame {
+            width: 100%;
+            margin-top: -154px;
+            padding-top: 15%;
+        }
+
+        .bombgame.active {
+            animation-name: vibration;
+            animation-duration: 1s;
+            animation-iteration-count: 5;
+        }
+
+        @keyframes vibration {
+            0% {
+                transform: translate(2px, 1px) rotate(0deg);
+            }
+
+            10% {
+                transform: translate(-1px, -2px) rotate(-2deg);
+            }
+
+            20% {
+                transform: translate(-3px, 0px) rotate(3deg);
+            }
+
+            30% {
+                transform: translate(0px, 2px) rotate(0deg);
+            }
+
+            40% {
+                transform: translate(1px, -1px) rotate(1deg);
+            }
+
+            50% {
+                transform: translate(-1px, 2px) rotate(-1deg);
+            }
+
+            60% {
+                transform: translate(-3px, 1px) rotate(0deg);
+            }
+
+            70% {
+                transform: translate(2px, 1px) rotate(-2deg);
+            }
+
+            80% {
+                transform: translate(-1px, -1px) rotate(4deg);
+            }
+
+            90% {
+                transform: translate(2px, 2px) rotate(0deg);
+            }
+        }
+
+        .bomb {
+            position: relative;
+        }
+
+        .time {
+            position: absolute;
+            left: 350px;
+            top: 150px;
+            font-size: 100px;
+            letter-spacing: 10px;
+            color: red;
+        }
+
+        .time.active {
+            animation-name: success;
+            animation-duration: 1s;
+            animation-iteration-count: 2;
+            color: transparent;
+        }
+
+        @keyframes success {
+            from {
+                color: red;
+            }
+
+            to {
+                color: black;
+            }
+        }
+
+        .yellow {
+            position: absolute;
+            left: 310px;
+            top: 304px;
+        }
+
+        .green {
+            position: absolute;
+            left: 440px;
+            top: 304px;
+        }
+
+        .blue {
+            position: absolute;
+            left: 560px;
+            top: 304px;
+        }
+
+        .u-line {
+            position: relative;
+            cursor: url(../img/bomb-game-11.png), auto;
+        }
+
+        .u-line:active {
+            cursor: url(../img/bomb-game-12.png), auto;
+        }
+
+        .c-line {
+            display: none;
+        }
+
+        .c-line.active {
+            display: block;
+        }
+
+        .linemask {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: url(../img/bomb-game-11.png), auto;
+            display: none;
+        }
+
+        .linemask:active {
+            cursor: url(../img/bomb-game-12.png), auto;
+        }
+
+        .linemask.active {
+            display: block;
+            z-index: 99;
+            opacity: 0;
+        }
+
+        .ray {
+            width: 100%;
+            height: 70%;
+            background: rgba(0, 0, 0, 0);
+            position: absolute;
+            top: 76px;
+            left: 0;
+            z-index: -9;
+            transform: skewY(-4.5deg);
+        }
+
+        .ray.active1 {
+            z-index: 9;
+        }
+
+        .ray.active2 {
+            animation-name: final;
+            animation-duration: .625s;
+            animation-iteration-count: 8;
+            z-index: 9;
+        }
+
+        @keyframes final {
+            from {
+                background: rgba(255, 0, 0, .5);
+            }
+
+            to {
+                background: rgba(0, 0, 0, 0);
+            }
+        }
+
+        .mask {
+            width: 100%;
+            height: 70%;
+            background: rgba(0, 0, 0, 0);
+            position: absolute;
+            top: 76px;
+            left: 0;
+            z-index: 9;
+            transform: skewY(-4.5deg);
+        }
+
+        .mask.unblock {
+            z-index: -9;
+        }
+
+        .mask.active {
+            animation-name: light;
+            animation-duration: .5s;
+            z-index: 9;
+        }
+
+        @keyframes light {
+            from {
+                background: rgba(255, 255, 0, .5);
+            }
+
+            to {
+                background: rgba(0, 0, 0, 0);
+            }
+        }
+
+        .warning {
+            width: 100%;
+            position: absolute;
+            left: -3.5%;
+            top: 57%;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .warning.active {
+            display: none;
+        }
+
+        .difficulty2 {
+            background: linear-gradient(0deg, #200B0B 0%, #A74141 100%);
+            transform: skewY(-4.5deg);
+            margin-top: -154px;
+            display: none;
+        }
+
+        .themeBtn {
+            width: 200px;
+            text-align: center;
+            color: white;
+            margin-top: 75px;
+            border: 1px solid white;
+            font-size: 36px;
+            transition: .5s;
+        }
+
+        .themeBtn:hover {
+            background: rgba(255, 255, 255, 0.85);
+            color: black;
+        }
+
+        .themeBtn:hover.themeBtn a {
+            color: black;
+            text-decoration: none;
+        }
+
+        .themeBtn a {
+            color: white;
+        }
+
+        .information {
+            width: 100%;
+            height: 180px;
+            color: white;
+            background-color: #A74141;
+        }
+
+        .copyright {
+            width: 100%;
+            height: 80px;
+            background-color: #200B0B;
+            color: #A74141;
+            text-align: center;
+            line-height: 80px;
+        }
+
+        .gotop {
+            position: fixed;
+            right: 61px;
+            bottom: 61px;
+            z-index: 999;
+        }
+
+        .titleName {
+            color: #E55A5A;
+            font-size: 36px;
+        }
+
+        .speakerBoss {
+            color: white;
+            font-size: 16px;
+            line-height: 2;
+        }
+
+        @media(max-width:1420px) {
+            .nav {
+                padding: 0 150px;
+            }
+        }
+
+        @media(max-width:1205px) {
+            .nav {
+                padding: 0 50px;
+            }
+        }
+
+        @media (max-width:576px) {
+            .ham {
+                display: block;
+                width: 40px;
+                height: 40px;
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 20;
+            }
+
+            .ham ul {
+                position: absolute;
+                top: 44px;
+                left: -2000px;
+                width: 100vw;
+                transition: 500ms;
+                background: #A74141;
+                z-index: 20;
+            }
+
+            .ham ul li {
+                margin: 0;
+            }
+
+            .ham:hover ul {
+                left: 70px;
+                top: 44px;
+                transform: translateX(-100%);
+            }
+
+            .difficulty1,
+            .bombgame,
+            .bomb4,
+            .fire,
+            .soldierpc,
+            .logo {
+                display: none !important;
+            }
+
+            .difficulty2,
+            .soldiermobile {
+                display: block !important;
+            }
+
+            main {
+                margin-top: -140px !important;
+            }
+
+            .text {
+                padding-top: 50px;
+                padding-bottom: 0 !important;
+                font-size: 16px !important;
+                line-height: 50px !important;
+            }
+
+            .text-s-16 {
+                font-size: 16px !important;
+                line-height: 50px !important;
+            }
+
+            .p-75 {
+                padding: 75px 0 !important;
+            }
+
+            .p-0 {
+                padding: 0 !important;
+            }
+
+            .titletext {
+                margin-bottom: 30px !important;
+            }
+
+            .game-rules {
+                padding: 75px 0;
+                height: 1035px;
+            }
+
+            .themeBtn {
+                margin-top: 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="bombgame" style="position: relative;">
+        <div class="d-flex justify-content-center">
+            <div class="bomb">
+                <div class="time"></div>
+                <img src="../img/bomb-game-02.png" alt="">
+                <div class="yellow">
+                    <img class="u-line" src="../img/bomb-game-13.png" alt="">
+                    <img class="c-line" src="../img/bomb-game-16.png" alt="">
+                    <div class="linemask"></div>
+                </div>
+                <div class="green">
+                    <img class="u-line" src="../img/bomb-game-14.png" alt="">
+                    <img class="c-line" src="../img/bomb-game-17.png" alt="">
+                    <div class="linemask"></div>
+                </div>
+                <div class="blue">
+                    <img class="u-line" src="../img/bomb-game-15.png" alt="">
+                    <img class="c-line" src="../img/bomb-game-18.png" alt="">
+                    <div class="linemask"></div>
+                </div>
+            </div>
+            <div class="ray"></div>
+            <div class="mask"></div>
+            <p class="warning">滴答滴答...時間不等人</p>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+    <script>
+
+        var bombgame = document.querySelector(".bombgame")
+        var time = document.querySelector(".time")
+        var u_line = document.querySelectorAll(".u-line")
+        var c_line = document.querySelectorAll(".c-line")
+        var ray = document.querySelector(".ray")
+        var mask = document.querySelector(".mask")
+        var linemask = document.querySelectorAll(".linemask")
+        var warning = document.querySelector(".warning")
+        var x = u_line.length
+
+        var stop1
+        var bomb_start = true
+        var timer = 30
+        var counts = 0
+
+        var y = getRandom1(x)        
+
+        alert("警告：剪去兩條正確的線路，才能停止炸彈！！！")
+        unblock()
+        showtime()
+        stop1 = setInterval(countdown, 1000)
+
+        function getRandom1(x) {
+            return Math.floor(Math.random() * x)
+        }
+        
+        function unblock() {
+            mask.classList.add("unblock")
+        }
+
+        function showtime() {
+            var miunte = (timer - (timer % 60)) / 60
+            var second = timer % 60
+
+            if (timer % 60 >= 10) {
+                time.innerHTML = "0" + miunte + ":" + second
+            } else if (timer % 60 < 10) {
+                time.innerHTML = "0" + miunte + ":0" + second
+            }
+        }
+
+        function countdown() {
+            timer--
+            var miunte = (timer - (timer % 60)) / 60
+            var second = timer % 60
+            if (timer <= 5) {
+                ray.classList.add("active2")
+                for (let i = 0; i < linemask.length; i++) {
+                    linemask[i].classList.add("active")
+                }
+            }
+            if (timer % 60 >= 10) {
+                time.innerHTML = "0" + miunte + ":" + second
+            } else if (timer > 0 && timer % 60 < 10 ) {
+                time.innerHTML = "0" + miunte + ":0" + second
+            } else if (timer == 0) {
+                time.innerHTML = "0" + miunte + ":0" + second
+                clearInterval(stop1)
+                explosion()
+            }
+        }
+
+        for (let i = 0; i < u_line.length; i++) {
+            u_line[i].onclick = function () {
+                if (i == y) {
+                    c_line[i].classList.add("active")
+                    u_line[i].style.display = "none"
+                    clearInterval(stop1)
+                    fastcountdown()
+                } else {
+                    c_line[i].classList.add("active")
+                    u_line[i].style.display = "none"
+                    times()
+                }
+            }
+        }
+
+        for (let i = 0; i < linemask.length; i++) {
+            linemask[i].onclick = function () {
+                if (i == y) {
+                    c_line[i].classList.add("active")
+                    u_line[i].style.display = "none"
+                    clearInterval(stop1)
+                    fastcountdown()
+                } else {
+                    c_line[i].classList.add("active")
+                    u_line[i].style.display = "none"
+                    times()
+                }
+            }
+        }
+
+        function times() {
+            counts++
+            if (counts == x - 1) {
+                clearInterval(stop1)
+                defusion()
+            }
+        }
+
+        function defusion() {
+            time.classList.add("active")
+            ray.classList.add("active1")
+            ray.classList.remove("active2")
+            for (let i = 0; i < linemask.length; i++) {
+                linemask[i].classList.remove("active")
+            }
+            warning.classList.add("active")
+        }
+
+        function fastcountdown() {
+            warning.innerHTML = "完了，要爆了！！！"
+            ray.classList.add("active1")
+            ray.classList.remove("active2")
+            timer--
+            var miunte = (timer - (timer % 60)) / 60
+            var second = timer % 60
+            var stop2 = setTimeout(fastcountdown, 100)
+            if (timer % 60 >= 10) {
+                time.innerHTML = "0" + miunte + ":" + second
+                stop2
+            } else if (timer > 0 && timer % 60 < 10) {
+                time.innerHTML = "0" + miunte + ":0" + second
+                stop2
+            } else if (timer == 0) {
+                time.innerHTML = "0" + miunte + ":0" + second
+                clearInterval(stop2)
+                explosion()
+            }
+        }
+
+        function explosion() {
+            warning.innerHTML = "爆炸了！！！"
+            bombgame.classList.add("active")
+            mask.classList.add("active")
+            ray.classList.remove("active2")
+            for (let i = 0; i < linemask.length; i++) {
+                linemask[i].classList.remove("active")
+            }
+        }
+    </script>
+</body>
+
+</html>

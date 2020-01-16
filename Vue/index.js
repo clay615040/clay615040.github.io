@@ -27,6 +27,7 @@ let data = {
         { type: '六角學院', title: 'v-on 事件綁定', link: './sixvue13.html' },
         { type: '六角學院', title: '表格排序', link: './sixvue14.html' },
         { type: '六角學院', title: '基礎元件練習', link: './sixvue15.html' },
+        { type: '練習', title: '拆炸彈小遊戲', link: './boomgame.html' },
     ]
 }
 

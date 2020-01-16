@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Boom_game</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../bootstrap.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Noto Sans TC", sans-serif;
+        }
+
+        body {
+            background-color: #200B0B;
+        }
+
+        #app {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .game {
+            position: relative;
+        }
+
+        .time {
+            position: absolute;
+            font-size: 100px;
+            letter-spacing: 10px;
+            color: red;
+            top: 150px;
+            left: 350px;
+        }
+
+        .yellow {
+            height: 120px;
+            width: 110px;
+            position: absolute;
+            top: 305px;
+            left: 330px;
+        }
+
+        .green {
+            height: 120px;
+            width: 110px;
+            position: absolute;
+            top: 305px;
+            left: 440px;
+
+        }
+
+        .blue {
+            height: 120px;
+            width: 110px;
+            position: absolute;
+            top: 305px;
+            left: 550px;
+
+        }
+
+        .line {
+            cursor: url(../img/bomb-game-11.png), auto;
+        }
+
+        .line:active {
+            cursor: url(../img/bomb-game-12.png), auto;
+        }
+
+        #img_Boom {
+            height: 100vh;
+            width: 100vw;
+            float: left;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="game" :class="{'d-none' : boom}">
+            <div class="time" v-if="10 > ((showTime - (showTime % 60)) / 60 ) && showTime % 60 >= 10 && power "
+                @click.once="countDown()">
+                0{{ (showTime - (showTime % 60)) / 60 }}:{{ showTime % 60 }}</div>
+            <div class="time" v-if="((showTime - (showTime % 60)) / 60 ) > 10 && showTime % 60 >= 10 && power"
+                @click.once="countDown()">
+                {{ (showTime - (showTime % 60)) / 60 }}:{{ showTime % 60 }}</div>
+            <div class="time" v-if="10 > showTime % 60 && power" @click.once="countDown()">
+                0{{ (showTime - (showTime % 60)) / 60 }}:0{{ showTime % 60 }}</div>
+            <img src="../img/bomb-game-02.png" alt="">
+
+            <div class="yellow line" @click.once="img_Line[0] = img_Line[1] ; examination(0)">
+                <img class="img_line" :src="img_Line[0]" alt="">
+
+            </div>
+            <div class="green line" @click.once="img_Line[2] = img_Line[3]  ; examination(1)">
+                <img class="green_line" :src="img_Line[2]" alt="">
+
+            </div>
+            <div class="blue line" @click.once="img_Line[4] = img_Line[5]; examination(2)">
+                <img class="blue_line" :src="img_Line[4]" alt="">
+
+            </div>
+
+        </div>
+        <img id="img_Boom" src="../img/boom.jpg" alt="" :class="{'d-block' : boom}">
+    </div>
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+
+
+        alert("依序剪去兩條正確的線路，才能停止炸彈！！！")
+
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                showTime: 30,
+                boom: false,
+                answer: [],
+                remaining: 2,
+                power: true,
+                img_Line: ["../img/bomb-game-13.png", "../img/cbomb-game-13.png",
+                    "../img/bomb-game-14.png", "../img/cbomb-game-14.png",
+                    "../img/bomb-game-15.png", "../img/cbomb-game-15.png"]
+            },
+            img_Boom: "../img/boom.jpg",
+            methods: {
+                countDown() {              
+                    let clock = window.setInterval(() => {
+                        this.showTime = this.showTime - 1 ;
+                        console.log(this.showTime);
+
+                        if (this.remaining == 0) {
+                            console.log("沒炸彈");
+                            window.clearInterval(clock)
+                            this.power = false;
+                        }
+                        if (this.showTime <= 0) {
+                            this.boom = true;
+                            window.clearInterval(clock)
+                            showTime = 0;
+                        }
+                    }, 1000)
+                },
+                getRandomnamber() {
+                    for (let i = 0; i < 2; i++) {
+                        this.answer[i] = Math.floor(Math.random() * 3);
+                        if (this.answer[i - 1] == this.answer[i]) { i-- }
+                    }
+                },
+                examination(key) {
+                    if (this.answer[0] == key) {
+                        this.answer[0] = this.answer[1];
+                        this.remaining--
+                    } else {
+                        this.boom = true
+
+                    }
+                }
+            },
+            mounted: function () {
+                this.countDown();
+                this.getRandomnamber();
+            },
+        })
+
+
+    </script>
+
+
+</body>
+
+</html>
