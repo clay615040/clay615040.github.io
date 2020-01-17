@@ -28,6 +28,8 @@ let data = {
         { type: '六角學院', title: '表格排序', link: './sixvue14.html' },
         { type: '六角學院', title: '基礎元件練習', link: './sixvue15.html' },
         { type: '練習', title: '拆炸彈小遊戲', link: './boomgame.html' },
+        { type: '六角學院', title: '元件function return', link: './sixvue16.html' },
+        { type: '六角學院', title: '由外到內的資料傳遞', link: './sixvue17.html' },
     ]
 }
 
