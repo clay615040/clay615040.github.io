@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+</head>
+
+<body>
+    <div class="col-md-9 post">
+        <h1 class="mt-0 text-muted">向外層傳送事件(Data)</h1>
+
+        <div id="app">
+            <h2>透過 emit 向外傳遞資訊</h2>
+            我透過元件儲值了 {{ cash }} 元
+            <button class="btn btn-primary" @click="incrementTotal1">按我</button>
+            <button-counter @increment="incrementTotal"></button-counter>
+            <hr>
+            <button-counter></button-counter>
+        </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <script>
+        Vue.component('buttonCounter', {
+            template: `<div>
+                <button @click="incrementCounter" class="btn btn-outline-primary">增加 {{ counter }} 元</button>
+                <input type="number" class="form-control mt-2" v-model="counter">
+            </div>`,
+            data: function () {
+                return {
+                    counter: 1
+                }
+            },
+            methods: {
+                incrementCounter: function(){
+                    this.$emit('increment',Number(this.counter))
+                }
+            }
+        });
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                cash: 300
+            },
+            methods: {
+                incrementTotal: function(newNumber){
+                    this.cash = this.cash + newNumber;
+                },
+                incrementTotal1: function(newNumber){
+                    this.cash = this.cash + this.cash;
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -30,6 +30,8 @@ let data = {
         { type: '練習', title: '拆炸彈小遊戲', link: './boomgame.html' },
         { type: '六角學院', title: '元件function return', link: './sixvue16.html' },
         { type: '六角學院', title: '由外到內的資料傳遞', link: './sixvue17.html' },
+        { type: '六角學院', title: 'Props 的型別', link: './sixvue18.html' },
+        { type: '六角學院', title: '向外層傳送事件', link: './sixvue19.html' },
     ]
 }
 
