@@ -32,6 +32,7 @@ let data = {
         { type: '六角學院', title: '由外到內的資料傳遞', link: './sixvue17.html' },
         { type: '六角學院', title: 'Props 的型別', link: './sixvue18.html' },
         { type: '六角學院', title: '向外層傳送事件', link: './sixvue19.html' },
+        { type: '六角學院', title: 'Slot 插槽替換', link: './sixvue20.html' },
     ]
 }
 
