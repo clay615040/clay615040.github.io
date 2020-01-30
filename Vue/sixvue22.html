@@ -54,7 +54,7 @@
                 ///////////////////////////
             </div>
             <hr>
-            <city-card :data="searchcity"></city-card>
+            <city-card :data="searchcity" :fav="favorite" @chfavorite="getfavorite"></city-card>
         </div>
     </div>
 
@@ -76,8 +76,8 @@
 
 
     <script type="text/x-template" id="cityName">
-        <select name="" id="" class="form-control mb-3" v-model="filterCity" @click="changeCity">
-            <option value="">--- 請選擇城市 ---</option>
+        <select class="form-control mb-3" v-model="filterCity" @click="changeCity">
+            <option value="全部">--- 請選擇城市 ---</option>
             <option :value="data[i].SiteName" v-for="(item,i) in data" >{{data[i].County}}---{{data[i].SiteName}}</option>
         </select>
     </script>
@@ -91,8 +91,11 @@
                      'status-aqi6' : data[i].Status == '非常不健康',
                      'status-aqi6' : data[i].Status == '危害',}">
                 <div class="card-header">{{data[i].County}}-{{data[i].SiteName}}
-                    <a href="#" class="float-right">
-                        <i :class="{'far fa-star': true}"></i>
+                    <a href="#" class="float-right" @click="changefavorite(i)" :class="{'d-none' : fav[i]}">
+                        <i class="fas fa-star"></i>
+                    </a>
+                    <a href="#" class="float-right" @click="changefavorite(i)" :class="{'d-none' : !fav[i]}">
+                        <i class="far fa-star"></i>
                     </a>
                 </div>
                 <div class="card-body">
@@ -124,8 +127,14 @@
         });
 
         Vue.component('city-card', {
-            props: ['data'],
+            props: ['data', 'fav'],
             template: '#cityCard',
+            methods: {
+                changefavorite: function (i) {
+                    console.log(i);
+                    this.$emit('chfavorite', i)
+                }
+            },
         });
 
         var app = new Vue({
@@ -134,37 +143,34 @@
                 data: [],
                 stared: [],
                 filterCity: '全部',
-                favorite:['false','false'],
+                favorite: [false],
+                index: [],
             },
-            // http://opendata2.epa.gov.tw/AQI.json
+
             methods: {
                 getData() {
                     const vm = this;
                     const api = 'https://opendata2.epa.gov.tw/AQI.json';
-
                     $.get(api).then(function (response) {
                         vm.data = response;
-                        console.log(response)
-                    });
+                        // console.log(vm.data);
+                        
+                            // console.log(vm.stars);
+                            vm.favorite = vm.data.map(function (num) {
+                                return false
+                            })
+                                
+                    })
                 },
                 getCity(newCity) {
                     console.log(newCity);
                     this.filterCity = newCity;
                 },
-
-                favoritefalse(){
-                    debugger
-                    console.log("下面是this"); 
-                    console.log(this); 
-                    console.log("下面是this.data"); 
-                    console.log(this.data); 
-                    console.log("下面是this.data.length"); 
-                    console.log(this.data.length);
-                    for (let i = 0; i < 80; i++) {
-                        this.favorite[i] = "false";
-                        
-                    }
-                }
+                getfavorite(i) {
+                    console.log(i);
+                    this.favorite[i] = !this.favorite[i];
+                    console.log(this);
+                },
             },
             computed: {
                 searchcity: function () {
@@ -179,21 +185,9 @@
             },
             mounted: function () {
                 this.getData()
-                this.favoritefalse()
-                
             }
         });
     </script>
 </body>
-
-<!-- 
-        狀態對應表
-        '良好',
-        'status-aqi2' '普通',
-        'status-aqi3' '對敏感族群不健康',
-        'status-aqi4' '對所有族群不健康',
-        'status-aqi5' '非常不健康',
-        'status-aqi6' '危害'
-    -->
 
 </html>
