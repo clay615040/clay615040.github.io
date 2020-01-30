@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <style>
+        .status-aqi2 {
+            background-color: #ffff00;
+        }
+
+        .status-aqi3 {
+            background-color: #ff7e00;
+        }
+
+        .status-aqi4 {
+            background-color: #ff0000;
+        }
+
+        .status-aqi5 {
+            background-color: #8f3f97;
+        }
+
+        .status-aqi6 {
+            background-color: #7e0023;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="col-md-9 post">
+        <h1 class="mt-0 text-muted">作業練習：元件變換</h1>
+
+        <h3>模板練習作業：Ajax 資料內容呈現</h3>
+        <p>本作業一定要用到元件。</p>
+        <div class="alert alert-secondary">
+            <p>提示：</p>
+            <ol class="mb-0">
+                <li>將資料內容透過 "元件" 呈現</li>
+                <li>製作城市過濾選項</li>
+                <li>將內層資料透過 emit 傳遞到外層 (作為另一個關注城市的呈現)</li>
+                <li>依據不同污染呈現不同色彩</li>
+                <li>加分題：透過 localStorage 儲存上次關注的城市</li>
+            </ol>
+        </div>
+
+        <div id="app">
+            <city-name :data="data" @changecity="getCity"></city-name>
+            <div>
+                <h4>關注城市</h4>
+                ///////////////////////////
+            </div>
+            <hr>
+            <city-card :data="searchcity"></city-card>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js"
+        integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l"
+        crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/regular.js"
+        integrity="sha384-t7yHmUlwFrLxHXNLstawVRBMeSLcXTbQ5hsd0ifzwGtN7ZF7RZ8ppM7Ldinuoiif"
+        crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js"
+        integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c"
+        crossorigin="anonymous"></script>
+
+
+    <script type="text/x-template" id="cityName">
+        <select name="" id="" class="form-control mb-3" v-model="filterCity" @click="changeCity">
+            <option value="">--- 請選擇城市 ---</option>
+            <option :value="data[i].SiteName" v-for="(item,i) in data" >{{data[i].County}}---{{data[i].SiteName}}</option>
+        </select>
+    </script>
+
+    <script type="text/x-template" id="cityCard">
+        <div class="card-columns">
+            <div class="card status-aqi2" v-for="(item,i) in data" 
+            :class="{'status-aqi3' : data[i].Status == '普通',
+                     'status-aqi4' : data[i].Status == '對敏感族群不健康',
+                     'status-aqi5' : data[i].Status == '對所有族群不健康',
+                     'status-aqi6' : data[i].Status == '非常不健康',
+                     'status-aqi6' : data[i].Status == '危害',}">
+                <div class="card-header">{{data[i].County}}-{{data[i].SiteName}}
+                    <a href="#" class="float-right">
+                        <i :class="{'far fa-star': true}"></i>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li>AQI 指數: {{data[i].AQI}}</li>
+                        <li>PM2.5: {{ data[i]['PM2.5'] }}</li>
+                        <li>說明: {{ data[i].Status }}</li>
+                    </ul>
+                    {{ data[i].PublishTime }}
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script>
+        Vue.component('city-name', {
+            props: ['data'],
+            data: function () {
+                return {
+                    filterCity: '',
+                }
+            },
+            template: '#cityName',
+            methods: {
+                changeCity: function () {
+                    this.$emit('changecity', this.filterCity)
+                }
+            }
+        });
+
+        Vue.component('city-card', {
+            props: ['data'],
+            template: '#cityCard',
+        });
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                data: [],
+                stared: [],
+                filterCity: '全部',
+                favorite:['false','false'],
+            },
+            // http://opendata2.epa.gov.tw/AQI.json
+            methods: {
+                getData() {
+                    const vm = this;
+                    const api = 'http://opendata2.epa.gov.tw/AQI.json';
+
+                    $.get(api).then(function (response) {
+                        vm.data = response;
+                        console.log(response)
+                    });
+                },
+                getCity(newCity) {
+                    console.log(newCity);
+                    this.filterCity = newCity;
+                },
+
+                favoritefalse(){
+                    
+                    console.log(this.data); 
+                    console.log("123");
+                    console.log(this.data.length); 
+                    for (let i = 0; i < 80; i++) {
+                        this.favorite[i] = "false";
+                        
+                    }
+                }
+            },
+            computed: {
+                searchcity: function () {
+                    if (this.filterCity != '全部') {
+                        return this.data.filter(item => {
+                            return item.SiteName == this.filterCity
+                        })
+                    } else {
+                        return this.data
+                    }
+                },
+            },
+            mounted: function () {
+                this.getData()
+                this.favoritefalse()
+                
+            }
+        });
+    </script>
+</body>
+
+<!-- 
+        狀態對應表
+        '良好',
+        'status-aqi2' '普通',
+        'status-aqi3' '對敏感族群不健康',
+        'status-aqi4' '對所有族群不健康',
+        'status-aqi5' '非常不健康',
+        'status-aqi6' '危害'
+    -->
+
+</html>
