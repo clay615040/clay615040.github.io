@@ -50,8 +50,8 @@
         <div id="app">
             <city-name :data="data" @changecity="getCity"></city-name>
             <div>
-                <h4>關注城市</h4>
-                ///////////////////////////
+            <h4>關注城市</h4>
+            <favorite-card :data="searchcity" :fav="favorite" @chfavorite="getfavorite"></favorite-card>
             </div>
             <hr>
             <city-card :data="searchcity" :fav="favorite" @chfavorite="getfavorite"></city-card>
@@ -89,12 +89,42 @@
                      'status-aqi4' : data[i].Status == '對敏感族群不健康',
                      'status-aqi5' : data[i].Status == '對所有族群不健康',
                      'status-aqi6' : data[i].Status == '非常不健康',
-                     'status-aqi6' : data[i].Status == '危害',}">
-                <div class="card-header">{{data[i].County}}-{{data[i].SiteName}}
-                    <a href="#" class="float-right" @click="changefavorite(i)" :class="{'d-none' : fav[i]}">
+                     'status-aqi6' : data[i].Status == '危害',
+                     'd-none' : fav[i] == true }">
+                <div class="card-header">{{data[i].County}}-{{data[i].SiteName}}{{i}}
+                    <a href="#" class="float-right" @click="changefavorite(i)" :class="{'d-none' : !fav[i]}">
                         <i class="fas fa-star"></i>
                     </a>
+                    <a href="#" class="float-right" @click="changefavorite(i)" :class="{'d-none' : fav[i]}">
+                        <i class="far fa-star"></i>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li>AQI 指數: {{data[i].AQI}}</li>
+                        <li>PM2.5: {{ data[i]['PM2.5'] }}</li>
+                        <li>說明: {{ data[i].Status }}</li>
+                    </ul>
+                    {{ data[i].PublishTime }}
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="favoriteCard">
+        <div class="card-columns">
+            <div class="card status-aqi2" v-for="(item,i) in data"
+            :class="{'status-aqi3' : data[i].Status == '普通',
+                     'status-aqi4' : data[i].Status == '對敏感族群不健康',
+                     'status-aqi5' : data[i].Status == '對所有族群不健康',
+                     'status-aqi6' : data[i].Status == '非常不健康',
+                     'status-aqi6' : data[i].Status == '危害',
+                     'd-none' : fav[i] == false }">
+                <div class="card-header">{{data[i].County}}-{{data[i].SiteName}}{{i}}
                     <a href="#" class="float-right" @click="changefavorite(i)" :class="{'d-none' : !fav[i]}">
+                        <i class="fas fa-star"></i>
+                    </a>
+                    <a href="#" class="float-right" @click="changefavorite(i)" :class="{'d-none' : fav[i]}">
                         <i class="far fa-star"></i>
                     </a>
                 </div>
@@ -115,7 +145,7 @@
             props: ['data'],
             data: function () {
                 return {
-                    filterCity: '',
+                    filterCity: '全部',
                 }
             },
             template: '#cityName',
@@ -132,6 +162,16 @@
             methods: {
                 changefavorite: function (i) {
                     console.log(i);
+                    this.$emit('chfavorite', i)
+                }
+            },
+        });
+
+        Vue.component('favorite-card', {
+            props: ['data', 'fav'],
+            template: '#favoriteCard',
+            methods: {
+                changefavorite: function (i) {
                     this.$emit('chfavorite', i)
                 }
             },
@@ -154,12 +194,12 @@
                     $.get(api).then(function (response) {
                         vm.data = response;
                         // console.log(vm.data);
-                        
-                            // console.log(vm.stars);
-                            vm.favorite = vm.data.map(function (num) {
-                                return false
-                            })
-                                
+
+                        // console.log(vm.stars);
+                        vm.favorite = vm.data.map(function (num) {
+                            return false
+                        })
+
                     })
                 },
                 getCity(newCity) {
@@ -169,7 +209,7 @@
                 getfavorite(i) {
                     console.log(i);
                     this.favorite[i] = !this.favorite[i];
-                    console.log(this);
+                    console.log(this.favorite[i]);
                 },
             },
             computed: {
