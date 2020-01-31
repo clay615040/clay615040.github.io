@@ -34,6 +34,7 @@ let data = {
         { type: '六角學院', title: '向外層傳送事件', link: './sixvue19.html' },
         { type: '六角學院', title: 'Slot 插槽替換', link: './sixvue20.html' },
         { type: '六角學院', title: '動態組件', link: './sixvue21.html' },
+        { type: '六角學院', title: '作業練習：元件變換', link: './sixvue22.html' },
     ]
 }
 
