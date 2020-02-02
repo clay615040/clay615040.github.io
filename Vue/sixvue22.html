@@ -33,20 +33,9 @@
 
 <body>
     <div class="col-md-9 post">
-        <h1 class="mt-0 text-muted">作業練習：元件變換</h1>
 
-        <h3>模板練習作業：Ajax 資料內容呈現</h3>
-        <p>本作業一定要用到元件。</p>
-        <div class="alert alert-secondary">
-            <p>提示：</p>
-            <ol class="mb-0">
-                <li>將資料內容透過 "元件" 呈現</li>
-                <li>製作城市過濾選項</li>
-                <li>將內層資料透過 emit 傳遞到外層 (作為另一個關注城市的呈現)</li>
-                <li>依據不同污染呈現不同色彩</li>
-                <li>加分題：透過 localStorage 儲存上次關注的城市</li>
-            </ol>
-        </div>
+        <h3>模板練習：Ajax 資料內容呈現</h3>
+        <p>本練習一定要用到元件。</p>
 
         <div id="app">
             <city-name :data="data" @changecity="getCity"></city-name>
