@@ -4,6 +4,7 @@ let data = {
         title: ''
     },
     menu: [
+        { type: '練習', title: '測試', link: './vue1.html' },
         { type: '練習', title: 'imgball', link: '../imgball/src/App.vue' },
         { type: 'Alex教學', title: '表單雙向資料', link: './vue1.html' },
         { type: '六角學院', title: '代辦表單', link: './sixvue1.html' },
